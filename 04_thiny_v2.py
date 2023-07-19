@@ -50,15 +50,13 @@ def currency(x):
 
 
 # Gets expenses, returns list wish has the data frame and sub-total
-
-
-def get_expenses(var_fixed):
+def get_ingredients(var_fixed):
     # Set up dictionaries and lists
 
     item_list = []
     amount_list = []
     price_list = []
-    unit_list = ["gram", "kilogram", "miliLitre", "Litre"]
+    unit_list = []
 
     variable_dict = {
         "Item": item_list,
@@ -67,6 +65,24 @@ def get_expenses(var_fixed):
         "Unit": unit_list
 
     }
+
+    def unit_checker(question):
+
+        while True:
+            response = input(question).lower()
+
+            if response == "grams" or response == "g":
+                return "grams"
+            elif response == "kilograms" or response == "kg":
+                return "kilograms"
+            elif response == "mililitres" or response == "mL":
+                return "mililitres"
+            elif response == "litres" or response == "litres":
+                return "litres"
+            elif response == "xxx":
+                return "Next Question"
+            else:
+                print("INCORRECT RESPONSE: Please correct your response in order to proceed.")
 
     # loop to get component, Amount and price
     item_name = ""
@@ -83,7 +99,7 @@ def get_expenses(var_fixed):
 
         amount = num_check("Amount:", "The amount must be a whole number which is more than zero", int)
         price = num_check("How much for a single item? $", "The price must be a number <more than 0>", float)
-        unit = string_checker("Please enter the measurement unit (g, kg, mL, L):", "Incorrect response", unit_list)
+        unit = unit_checker("Please enter the measurement unit (g, kg, mL, L):", "Incorrect response", unit_list)
         # add item, quantity, price, and unit to lists
         item_list.append(item_name)
         amount_list.append(amount)
@@ -108,11 +124,12 @@ def get_expenses(var_fixed):
 
 # Get Recipe name
 recipe_name = not_blank("Recipe name: ", "The recipe name can't be blank.")
+ingredient_name = not_blank("Enter Ingredient:", "Please choose an ingredient or type xxx.")
 
-variable_expenses = get_expenses("variable")
-variable_frame = variable_expenses[0]
-variable_sub = variable_expenses[1]
-unit_frame = variable_expenses[2]
+variable_ingredients = get_ingredients("variable")
+variable_frame = variable_ingredients[0]
+variable_sub = variable_ingredients[1]
+unit_frame = variable_ingredients[2]
 
 # **** Printing Area ****
 

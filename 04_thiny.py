@@ -83,7 +83,7 @@ def get_expenses(var_fixed):
 
         amount = num_check("Amount:", "The amount must be a whole number which is more than zero", int)
         price = num_check("How much for a single item? $", "The price must be a number <more than 0>", float)
-        unit = string_checker("What is the unit (g, kg, mL,L)?", "Error",)
+        unit = string_checker("What is the unit (g, kg, mL,L)?", "Error", ["grams", "kg", "l"])
         # add item, quantity, price, and unit to lists
         item_list.append(item_name)
         amount_list.append(amount)
