@@ -89,20 +89,6 @@ def not_blank(question, error):
         return response
 
 
-def string_checker(question, num_letters, valid_responses):
-
-    error = "ERROR: INCORRECT RESPONSE"
-
-    while True:
-        response = input(question).lower()
-
-        for item in valid_responses:
-            if response == item[:num_letters] or response == item:
-                return item
-
-        print(error)
-
-
 # currency formatting
 def currency(x):
     return f"${x:.2f}"

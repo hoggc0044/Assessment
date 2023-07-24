@@ -1,0 +1,2 @@
+Recipe Ingredient  Amount Unit  PricePerUnit  TotalCost
+  Food       FOod    15.0    g           2.0       30.0
