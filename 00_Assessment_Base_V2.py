@@ -53,6 +53,10 @@ def yes_no(question):
               "Missing argument: yes (y) / no (n). \n")
 
 
+def currency(x):
+    return f"${x:.2f}"
+
+
 # main routine goes here
 want_instructions = yes_no("Do you want to see the instructions? ")
 
@@ -77,35 +81,37 @@ if want_instructions == "yes":
 
 
 # Ensures that the string isn't blank
+def num_check(question, error, num_type=float):  # Add 'num_type' with a default value of float
+    valid = False
+    while not valid:
+        try:
+            response = num_type(input(question))
+            if response <= 0:
+                print("Please enter a valid positive number.")
+            else:
+                return response
+        except ValueError:
+            print(error)
+
+
 def not_blank(question, error):
     valid = False
     while not valid:
         response = input(question)
-
         if response == "":
-            print("{}. \n Please try again. \n".format(error))
-            continue
-
-        return response
-
-
-# currency formatting
-def currency(x):
-    return f"${x:.2f}"
-    # return "${:.2f}".format(x)
+            print("{}\nPlease try again.".format(error))  # Removed the period from the error message
+        else:
+            return response
 
 
-# Gets expenses, returns list wish has the data frame and sub-total
-def get_expenses(var_fixed):
-    # Set up dictionaries and lists
+# Get recipe name
+recipe_name = not_blank("Recipe name: ", "Please enter a valid response. Try again.")
 
-    item_list = []
-    quantity_list = []
-    price_list = []
+# Get ingredient name
+ingredient_name = not_blank("Ingredient name: ", "Please enter a valid response. Try again.")
 
-    expense_dict = {
-        "Item": item_list,
-        "Quantity": quantity_list,
-        "Price": price_list
+# Get unit type
+unit_type = not_blank("Unit type: ", "Please enter a valid response. Try again.")
 
-    }
+# Get amount
+amount = num_check("Ingredient Amount: ", "Please only enter positive numbers. Try again.")

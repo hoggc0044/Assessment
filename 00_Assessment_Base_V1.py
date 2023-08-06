@@ -111,15 +111,4 @@ def currency(x):
 
 # Gets expenses, returns list wish has the data frame and sub-total
 def get_expenses(var_fixed):
-    # Set up dictionaries and lists
 
-    item_list = []
-    quantity_list = []
-    price_list = []
-
-    expense_dict = {
-        "Item": item_list,
-        "Quantity": quantity_list,
-        "Price": price_list
-
-    }
